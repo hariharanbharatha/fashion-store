@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                git branch: 'main', url: 'https://github.com/YOUR-USERNAME/fashion-store.git'
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                sh 'docker build -t fashion-store:latest .'
+            }
+        }
+
+        stage('Run App') {
+            steps {
+                sh '''
+                    docker rm -f fashion-app || true
+                    docker run -d --name fashion-app -p 3000:3000 fashion-store:latest
+                '''
+            }
+        }
+    }
+}
+
