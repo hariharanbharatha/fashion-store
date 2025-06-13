@@ -4,22 +4,19 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git branch: 'main', url: 'https://github.com/YOUR-USERNAME/fashion-store.git'
+                git 'https://github.com/hariharanbharatha/fashion-store.git'
             }
         }
 
-        stage('Build Image') {
+        stage('Build Docker Image') {
             steps {
-                sh 'docker build -t fashion-store:latest .'
+                sh 'docker build -t fashion-store-app .'
             }
         }
 
-        stage('Run App') {
+        stage('Run Docker Container') {
             steps {
-                sh '''
-                    docker rm -f fashion-app || true
-                    docker run -d --name fashion-app -p 3000:3000 fashion-store:latest
-                '''
+                sh 'docker run -d -p 3000:3000 fashion-store-app'
             }
         }
     }
