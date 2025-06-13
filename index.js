@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('👗 Welcome to Hariharan Fashion Store!');
+  res.send('👗 HARIHARANBHARATHA!');
 });
 
 app.get('/products', (req, res) => {
