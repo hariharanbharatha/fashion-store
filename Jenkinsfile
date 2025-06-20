@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Clone') {
       steps {
-        git 'https://github.com/YOUR_USERNAME/fashion-store.git'
+        git 'https://github.com/hariharanbharatha/fashion-store.git'
       }
     }
     stage('Build Image') {
